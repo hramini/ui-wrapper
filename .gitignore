@@ -2,7 +2,6 @@
 node_modules
 bower_modules
 coverage
-dist
 
 # OS-related things
 .DS_Store
