@@ -1,0 +1,28 @@
+{
+  "name": "ui-wrapper",
+  "version": "1.0.5",
+  "description": "",
+  "main": "./dist/ui-wrapper-expose",
+  "types": "./dist/ui-wrapper-types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "webpack-dev-server",
+    "test": "jest --watchAll --coverage",
+    "tsc:compile": "tsc -p ./tsconfig.json --declarationMap false --sourceMap false --outDir dist",
+    "tsc:test": "tsc -p ./tsconfig.json --noEmitOnError false --watch",
+    "dts": "dts-bundle-generator -o dist/ui-wrapper-types.d.ts lib/ui-wrapper-expose.ts"
+  },
+  "author": "hmd-amini",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "7.8.7",
+    "@babel/preset-env": "7.8.7",
+    "@babel/preset-typescript": "7.8.3",
+    "@types/jest": "25.1.2",
+    "dts-bundle-generator": "4.0.0",
+    "jest": "25.1.0",
+    "typescript": "3.7.5"
+  }
+}
