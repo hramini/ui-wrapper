@@ -3,8 +3,10 @@ import { IElement } from '../unit/unit-interface';
 import {
   IBuilder,
   IBuilderEntry,
-  IBuilderGetFrameBuilderIn,
-  IBuilderGetTagBuilderIn
+  IBuilderGetFrameBuilderOut,
+  IBuilderGetTagBuilderOut,
+  IBuilderSetFrameBuilderIn,
+  IBuilderSetTagBuilderIn
 } from './builder-interface';
 
 export class Builder<T> {
@@ -17,20 +19,22 @@ export class Builder<T> {
     this.builder = new builder();
   }
 
-  public static getTagBuilder<K>(param: IBuilderGetTagBuilderIn<K>): Builder<K> {
+  public static setTagBuilder<K>(param: IBuilderSetTagBuilderIn<K>): void {
     const { tagBuilderClass } = param;
-    if (!this.tagBuilderInstance) {
-      this.tagBuilderInstance = new Builder({ builder: tagBuilderClass });
-    }
-    return this.tagBuilderInstance;
+    this.tagBuilderInstance = new Builder<K>({ builder: tagBuilderClass });
   }
 
-  public static getFrameBuilder<K>(param: IBuilderGetFrameBuilderIn<K>): Builder<K> {
+  public static setFrameBuilder<K>(param: IBuilderSetFrameBuilderIn<K>): void {
     const { frameBuilderClass } = param;
-    if (!this.frameBuilderInstance) {
-      this.frameBuilderInstance = new Builder({ builder: frameBuilderClass });
-    }
-    return this.frameBuilderInstance;
+    this.frameBuilderInstance = new Builder<K>({ builder: frameBuilderClass });
+  }
+
+  public static getTagBuilder<K>(): IBuilderGetTagBuilderOut<K> {
+    return { tagBuilderInstance: this.tagBuilderInstance };
+  }
+
+  public static getFrameBuilder<K>(): IBuilderGetFrameBuilderOut<K> {
+    return { frameBuilderInstance: this.frameBuilderInstance };
   }
 
   public buildElement<P, S>(elementOption: ElementOption<T, P, S>): IElement<T> {

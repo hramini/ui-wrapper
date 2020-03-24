@@ -6,8 +6,8 @@ export class Primer<T> {
   private target: HTMLElement;
 
   public constructor(entry: IPrimerEntry<T>) {
-    const { primer } = entry;
-    this.entryPrimer = new primer();
+    const { primer: primerClass } = entry;
+    this.entryPrimer = new primerClass();
   }
 
   public getElement(): PrimerElement<T> {

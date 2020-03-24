@@ -1,14 +1,13 @@
 import { Builder } from '../builder/builder-class';
 import { IFrameBuilder } from '../builder/builder-interface';
-import { TElement } from '../type/element-type';
 import { Unit } from './unit-class';
 
-export abstract class UnitFrame<P, S> extends Unit<P, S> {
-  protected builder: IFrameBuilder<TElement>;
+export abstract class UnitFrame<T, P, S> extends Unit<T, P, S> {
+  protected builder: IFrameBuilder<T>;
 
   public constructor() {
     super();
-    const { frameBuilderClass } = this.getFrameBuilder();
-    this.builder = Builder.getFrameBuilder<TElement>({ frameBuilderClass });
+    const { frameBuilderInstance } = Builder.getFrameBuilder<T>();
+    this.builder = frameBuilderInstance;
   }
 }

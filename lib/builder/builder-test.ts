@@ -7,36 +7,47 @@ import { TagBuilderDemo } from './builder-tag-demo-class';
 describe('@Builder', () => {
   describe('#geTagBuilder', () => {
     test('test getTagBuilder with TagBuilderDemo', () => {
-      const createInstanceTagBuilder = Builder.getTagBuilder<TDemoElement>({
+      const { tagBuilderInstance } = Builder.getTagBuilder<TDemoElement>();
+      expect(tagBuilderInstance).toBeUndefined();
+    });
+
+    test('test getTagBuilder with TagBuilderDemo', () => {
+      Builder.setTagBuilder({
         tagBuilderClass: TagBuilderDemo
       });
-      const useCreatedInstanceTagBuilder = Builder.getTagBuilder<TDemoElement>({
-        tagBuilderClass: TagBuilderDemo
-      });
-      expect(createInstanceTagBuilder).toBeInstanceOf(Builder);
-      expect(useCreatedInstanceTagBuilder).toBeInstanceOf(Builder);
+      const { tagBuilderInstance } = Builder.getTagBuilder<TDemoElement>();
+      expect(tagBuilderInstance).toBeInstanceOf(Builder);
     });
   });
 
   describe('#geFrameBuilder', () => {
     test('test getFrameBuilder with FrameBuilderDemo', () => {
-      const createInstanceFrameBuilder = Builder.getFrameBuilder<TDemoElement>({
+      const { frameBuilderInstance } = Builder.getFrameBuilder<TDemoElement>();
+      expect(frameBuilderInstance).toBeUndefined();
+    });
+
+    test('test getFrameBuilder with FrameBuilderDemo', () => {
+      Builder.setFrameBuilder({
         frameBuilderClass: FrameBuilderDemo
       });
-      const useCreatedInstanceFrameBuilder = Builder.getFrameBuilder<TDemoElement>({
-        frameBuilderClass: FrameBuilderDemo
-      });
-      expect(createInstanceFrameBuilder).toBeInstanceOf(Builder);
-      expect(useCreatedInstanceFrameBuilder).toBeInstanceOf(Builder);
+      const { frameBuilderInstance } = Builder.getFrameBuilder<TDemoElement>();
+      expect(frameBuilderInstance).toBeInstanceOf(Builder);
     });
   });
 
   describe('#buildElement', () => {
-    test('test buildElement method of tagBuilder', () => {
-      const tagBuilder = Builder.getTagBuilder<TDemoElement>({
+    beforeAll(() => {
+      Builder.setTagBuilder({
         tagBuilderClass: TagBuilderDemo
       });
-      const { element } = tagBuilder.buildElement({
+      Builder.setFrameBuilder({
+        frameBuilderClass: FrameBuilderDemo
+      });
+    });
+
+    test('test buildElement method of tagBuilder', () => {
+      const { tagBuilderInstance } = Builder.getTagBuilder<TDemoElement>();
+      const { element } = tagBuilderInstance.buildElement({
         name: 'test-tag',
         properties: null,
         children: []
@@ -46,10 +57,8 @@ describe('@Builder', () => {
     });
 
     test('test buildElement method of frameBuilder', () => {
-      const frameBuilder = Builder.getFrameBuilder<TDemoElement>({
-        frameBuilderClass: FrameBuilderDemo
-      });
-      const { element } = frameBuilder.buildElement({
+      const { frameBuilderInstance } = Builder.getFrameBuilder<TDemoElement>();
+      const { element } = frameBuilderInstance.buildElement({
         name: CustomDemo,
         properties: null,
         children: []

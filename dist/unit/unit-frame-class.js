@@ -5,8 +5,8 @@ const unit_class_1 = require("./unit-class");
 class UnitFrame extends unit_class_1.Unit {
     constructor() {
         super();
-        const { frameBuilderClass } = this.getFrameBuilder();
-        this.builder = builder_class_1.Builder.getFrameBuilder({ frameBuilderClass });
+        const { frameBuilderInstance } = builder_class_1.Builder.getFrameBuilder();
+        this.builder = frameBuilderInstance;
     }
 }
 exports.UnitFrame = UnitFrame;

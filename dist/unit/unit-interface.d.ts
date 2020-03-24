@@ -8,11 +8,7 @@ export interface IUnitLifeCycle {
     onAfterUpdate(): void;
     onBeforeDispose(): void;
 }
-export interface IUnitBuilder<T> {
-    getTagBuilder(): IUnitGetTagBuilderOut<T>;
-    getFrameBuilder(): IUnitGetFrameBuilderOut<T>;
-}
-export interface IUnit<T, P, S> extends IUnitLifeCycle, IUnitBuilder<T> {
+export interface IUnit<T, P, S> extends IUnitLifeCycle {
     provide(): IElement<T>;
     forceUpdate(): void;
     alterState<K extends keyof S>(param: IUnitAlterStateIn<S, K>): void;

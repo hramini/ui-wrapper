@@ -1,6 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const unit_demo_class_1 = require("./unit-demo-class");
-class Unit extends unit_demo_class_1.UnitDemo {
+class Unit {
+    forceUpdate() { }
+    alterState(param) {
+        const { state } = param;
+        this.state = Object.assign(Object.assign({}, this.state), state);
+    }
+    onBeforeProvide() { }
+    onAfterProvide() { }
+    onBeforeUpdate() {
+        return { shouldUpdate: true };
+    }
+    onAfterUpdate() { }
+    onBeforeDispose() { }
 }
 exports.Unit = Unit;

@@ -21,18 +21,18 @@ export interface IBuilderEntry<T> {
   builder: new () => IBuilder<T>;
 }
 
-export interface IBuilderGetTagBuilderIn<T> {
+export interface IBuilderSetTagBuilderIn<T> {
   tagBuilderClass: new () => ITagBuilder<T>;
 }
 
-export interface IBuilderGetTagBuilderOut<T> {
-  tagBuilder: ITagBuilder<T>;
-}
-
-export interface IBuilderGetFrameBuilderIn<T> {
+export interface IBuilderSetFrameBuilderIn<T> {
   frameBuilderClass: new () => IFrameBuilder<T>;
 }
 
+export interface IBuilderGetTagBuilderOut<T> {
+  tagBuilderInstance: ITagBuilder<T>;
+}
+
 export interface IBuilderGetFrameBuilderOut<T> {
-  frameBuilder: IFrameBuilder<T>;
+  frameBuilderInstance: IFrameBuilder<T>;
 }

@@ -5,19 +5,19 @@ class Builder {
         const { builder } = entry;
         this.builder = new builder();
     }
-    static getTagBuilder(param) {
+    static setTagBuilder(param) {
         const { tagBuilderClass } = param;
-        if (!this.tagBuilderInstance) {
-            this.tagBuilderInstance = new Builder({ builder: tagBuilderClass });
-        }
-        return this.tagBuilderInstance;
+        this.tagBuilderInstance = new Builder({ builder: tagBuilderClass });
     }
-    static getFrameBuilder(param) {
+    static setFrameBuilder(param) {
         const { frameBuilderClass } = param;
-        if (!this.frameBuilderInstance) {
-            this.frameBuilderInstance = new Builder({ builder: frameBuilderClass });
-        }
-        return this.frameBuilderInstance;
+        this.frameBuilderInstance = new Builder({ builder: frameBuilderClass });
+    }
+    static getTagBuilder() {
+        return { tagBuilderInstance: this.tagBuilderInstance };
+    }
+    static getFrameBuilder() {
+        return { frameBuilderInstance: this.frameBuilderInstance };
     }
     buildElement(elementOption) {
         const { element } = this.builder.buildElement(elementOption);

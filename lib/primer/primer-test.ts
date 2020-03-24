@@ -12,20 +12,6 @@ describe('@Primer', () => {
     primer = new Primer<TDemoElement>({ primer: PrimerDemo });
   });
 
-  // describe('#getTagBuilder', () => {
-  //   test('get tag builder should be instance of TagBuilder', () => {
-  //     const { tagBuilder } = primer.getTagBuilder();
-  //     expect(new tagBuilder()).toBeInstanceOf(TagBuilderDemo);
-  //   });
-  // });
-
-  // describe('#getFrameBuilder', () => {
-  //   test('get frame builder should be instance of FrameBuilder', () => {
-  //     const { frameBuilder } = primer.getFrameBuilder();
-  //     expect(new frameBuilder()).toBeInstanceOf(FrameBuilderDemo);
-  //   });
-  // });
-
   describe('#setElement', () => {
     beforeAll(() => {
       const { element: setElementDiv } = doc.makeElement({ tagName: 'div' });

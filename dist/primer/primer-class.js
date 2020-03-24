@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Primer {
     constructor(entry) {
-        const { primer } = entry;
-        this.entryPrimer = new primer();
+        const { primer: primerClass } = entry;
+        this.entryPrimer = new primerClass();
     }
     getElement() {
         return { element: this.element };
