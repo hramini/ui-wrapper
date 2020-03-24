@@ -31,15 +31,6 @@ describe('@Builder', () => {
     });
   });
 
-  // describe('#setBuilders', () => {
-  //   test('test setBuilder for tagBuilder using getTagBuilder', () => {
-  //     expect(tagBuilder).toBeInstanceOf(Builder);
-  //     expect(frameBuilder).toBeInstanceOf(Builder);
-  //   });
-
-  //   test('test setBuilder for tagBuilder using getTagBuilder', () => {});
-  // });
-
   describe('#buildElement', () => {
     test('test buildElement method of tagBuilder', () => {
       const tagBuilder = Builder.getTagBuilder<TDemoElement>({

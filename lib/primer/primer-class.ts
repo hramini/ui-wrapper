@@ -10,16 +10,6 @@ export class Primer<T> {
     this.entryPrimer = new primer();
   }
 
-  // public getTagBuilder(): IPrimerGetTagBuilderOut<T> {
-  //   const { tagBuilder } = this.entryPrimer.getTagBuilder();
-  //   return { tagBuilder };
-  // }
-
-  // public getFrameBuilder(): IPrimerGetFrameBuilderOut<T> {
-  //   const { frameBuilder } = this.entryPrimer.getFrameBuilder();
-  //   return { frameBuilder };
-  // }
-
   public getElement(): PrimerElement<T> {
     return { element: this.element };
   }

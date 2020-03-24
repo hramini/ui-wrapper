@@ -17,12 +17,6 @@ export class Builder<T> {
     this.builder = new builder();
   }
 
-  // public static setBuilders<K>(param: IBuilderSetBuildersIn<K>): void {
-  //   const { tagBuilder, frameBuilder } = param;
-  //   this.tagBuilderInstance = new Builder<K>({ builder: tagBuilder });
-  //   this.frameBuilderInstance = new Builder<K>({ builder: frameBuilder });
-  // }
-
   public static getTagBuilder<K>(param: IBuilderGetTagBuilderIn<K>): Builder<K> {
     const { tagBuilderClass } = param;
     if (!this.tagBuilderInstance) {
