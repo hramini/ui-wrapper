@@ -10,6 +10,7 @@ export {
 export { TElement } from './type/element-type';
 export { Properties } from './type/properties-interface';
 export { States } from './type/states-interface';
+export { Unit } from './unit/unit-class';
 export { UnitFrame } from './unit/unit-frame-class';
 export {
   IElement,

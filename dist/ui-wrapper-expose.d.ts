@@ -6,6 +6,7 @@ export { ElementOption, FrameElementOption, TagElementOption } from './type/elem
 export { TElement } from './type/element-type';
 export { Properties } from './type/properties-interface';
 export { States } from './type/states-interface';
+export { Unit } from './unit/unit-class';
 export { UnitFrame } from './unit/unit-frame-class';
 export { IElement, IUnit, IUnitAlterStateIn, IUnitGetFrameBuilderOut, IUnitGetTagBuilderOut, IUnitOnBeforeUpdateOut, IUnitSetPropsIn } from './unit/unit-interface';
 export { UnitTag } from './unit/unit-tag-class';
