@@ -112,8 +112,6 @@ export declare class Primer<T> {
 	setTarget(param: PrimerTarget): void;
 	start(): void;
 }
-export declare type TDemoElement = string;
-export declare type TElement = TDemoElement;
 export declare abstract class Unit<T, P, S> implements IUnit<T, P, S> {
 	props: Readonly<P> & Readonly<Properties<T>>;
 	state: Readonly<S>;

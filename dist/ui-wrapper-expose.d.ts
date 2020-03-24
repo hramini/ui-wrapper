@@ -3,7 +3,6 @@ export { IBuilder, IFrameBuilder, ITagBuilder } from './builder/builder-interfac
 export { Primer } from './primer/primer-class';
 export { IPrimer, PrimerStartOptions } from './primer/primer-interface';
 export { ElementOption, FrameElementOption, TagElementOption } from './type/element-option-interface';
-export { TElement } from './type/element-type';
 export { Properties } from './type/properties-interface';
 export { States } from './type/states-interface';
 export { Unit } from './unit/unit-class';
