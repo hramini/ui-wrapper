@@ -1,39 +1,29 @@
-import { IPrimer, IPrimerEntry, PrimerElement, PrimerTarget } from './primer-interface';
+import { IPrimer, IPrimerElement, IPrimerEntry, IPrimerTarget } from './primer-interface';
 
 export class Primer<T> {
-  private entryPrimer: IPrimer<T>;
-  private element: T;
-  private target: HTMLElement;
+  public readonly entryPrimer: IPrimer<T>;
 
   public constructor(entry: IPrimerEntry<T>) {
-    const { primer: primerClass } = entry;
-    this.entryPrimer = new primerClass();
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    const { PrimerClass } = entry;
+    this.entryPrimer = new PrimerClass();
   }
 
-  public getElement(): PrimerElement<T> {
-    return { element: this.element };
-  }
-
-  public setElement(param: PrimerElement<T>): void {
+  public setElement(param: IPrimerElement<T>): void {
     const { element } = param;
-    this.element = element;
+    this.entryPrimer.setElement({
+      element
+    });
   }
 
-  public getTarget(): PrimerTarget {
-    return { target: this.target };
-  }
-
-  public setTarget(param: PrimerTarget): void {
+  public setTarget(param: IPrimerTarget): void {
     const { target } = param;
-    this.target = target;
+    this.entryPrimer.setTarget({
+      target
+    });
   }
 
   public start(): void {
-    const { element } = this.getElement();
-    const { target } = this.getTarget();
-    this.entryPrimer.start({
-      element,
-      target
-    });
+    this.entryPrimer.start();
   }
 }

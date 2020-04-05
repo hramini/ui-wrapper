@@ -1,48 +1,77 @@
 import { TDemoElement } from '../type/element-type';
+import {
+  ICustomDemoChangeShouldUpdateIn,
+  ICustomDemoProperties,
+  ICustomDemoSetProvideTextIn,
+  ICustomDemoStates
+} from './custom-demo-interface';
 import { UnitDemo } from './unit-demo-class';
-import { IElement, IUnitOnBeforeUpdateOut } from './unit-interface';
+import { IElement, IUnitOnBeforeUpdateCheck } from './unit-interface';
 
-export class CustomDemo extends UnitDemo<any, any> {
+export class CustomDemo extends UnitDemo<ICustomDemoProperties, ICustomDemoStates> {
   private provideText: string;
   private shouldUpdate: boolean;
 
   public constructor() {
     super();
-    this.provideText = 'on-constructor';
+    this.setProvideText({
+      provideText: 'on-constructor'
+    });
     this.changeShouldUpdate({ status: true });
   }
 
   public onBeforeProvide(): void {
-    this.provideText = 'on-before-provide';
+    this.setProvideText({
+      provideText: 'on-before-provide'
+    });
   }
 
   public onAfterProvide(): void {
-    this.provideText = 'on-after-provide';
+    this.setProvideText({
+      provideText: 'on-after-provide'
+    });
   }
 
-  public onBeforeUpdate(): IUnitOnBeforeUpdateOut {
-    this.provideText = 'on-before-update';
-    return { shouldUpdate: this.shouldUpdate };
+  public onBeforeUpdate(): IUnitOnBeforeUpdateCheck {
+    const { shouldUpdate } = this;
+    this.setProvideText({
+      provideText: 'on-before-update'
+    });
+
+    return { shouldUpdate };
   }
 
   public onAfterUpdate(): void {
-    this.provideText = 'on-after-update';
+    this.setProvideText({
+      provideText: 'on-after-update'
+    });
   }
 
   public onBeforeDispose(): void {
-    this.provideText = '';
+    this.setProvideText({
+      provideText: ''
+    });
   }
 
   public forceUpdate(): void {
-    this.provideText = 'force-update';
+    this.setProvideText({
+      provideText: 'force-update'
+    });
   }
 
   public provide(): IElement<TDemoElement> {
-    return { element: this.provideText };
+    const { provideText: element } = this;
+
+    return { element };
   }
 
-  public changeShouldUpdate(param: { status: boolean }): void {
+  public changeShouldUpdate(param: ICustomDemoChangeShouldUpdateIn): void {
     const { status } = param;
     this.shouldUpdate = status;
+  }
+
+  private setProvideText(param: ICustomDemoSetProvideTextIn): void {
+    const { provideText } = param;
+    this.provideText = provideText;
   }
 }

@@ -1,24 +1,22 @@
+/*eslint-disable */
 export { Builder } from './builder/builder-class';
 export { IBuilder, IFrameBuilder, ITagBuilder } from './builder/builder-interface';
 export { Primer } from './primer/primer-class';
-export { IPrimer, PrimerStartOptions } from './primer/primer-interface';
+export { IPrimer } from './primer/primer-interface';
 export {
-  ElementOption,
-  FrameElementOption,
-  TagElementOption
+  IElementOption,
+  IFrameElementOption,
+  ITagElementOption
 } from './type/element-option-interface';
-export { Properties } from './type/properties-interface';
-export { States } from './type/states-interface';
+export { IBasicProperties } from './type/properties-interface';
+export { IBasicStates } from './type/states-interface';
 export { Unit } from './unit/unit-class';
 export { UnitFrame } from './unit/unit-frame-class';
 export {
   IElement,
   IUnit,
-  IUnitAlterStateIn,
-  IUnitGetFrameBuilderOut,
-  IUnitGetTagBuilderOut,
-  IUnitOnBeforeUpdateOut,
-  IUnitSetPropsIn
+  IUnitAlterStateOptions,
+  IUnitOnBeforeUpdateCheck,
+  IUnitSetPropertiesOptions
 } from './unit/unit-interface';
 export { UnitTag } from './unit/unit-tag-class';
-export { VirtualDocument } from './virtual-document/virtual-document-class';

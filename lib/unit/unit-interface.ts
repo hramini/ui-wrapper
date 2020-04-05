@@ -1,11 +1,10 @@
-import { IFrameBuilder, ITagBuilder } from '../builder/builder-interface';
-import { Properties } from '../type/properties-interface';
+import { IBasicProperties } from '../type/properties-interface';
 import { PickState } from '../type/states-interface';
 
 export interface IUnitLifeCycle {
   onBeforeProvide(): void;
   onAfterProvide(): void;
-  onBeforeUpdate(): IUnitOnBeforeUpdateOut;
+  onBeforeUpdate(): IUnitOnBeforeUpdateCheck;
   onAfterUpdate(): void;
   onBeforeDispose(): void;
 }
@@ -13,17 +12,17 @@ export interface IUnitLifeCycle {
 export interface IUnit<T, P, S> extends IUnitLifeCycle {
   provide(): IElement<T>;
   forceUpdate(): void;
-  alterState<K extends keyof S>(param: IUnitAlterStateIn<S, K>): void;
-  props: Readonly<P> & Readonly<Properties<T>>;
+  alterState<K extends keyof S>(param: IUnitAlterStateOptions<S, K>): void;
+  props: Readonly<P> & Readonly<IBasicProperties<T>>;
   state: Readonly<S>;
 }
 
-export interface IUnitAlterStateIn<S, K extends keyof S> {
+export interface IUnitAlterStateOptions<S, K extends keyof S> {
   state: PickState<S, K>;
-  callback?: () => void;
+  callbackFunction?: () => void;
 }
 
-export interface IUnitOnBeforeUpdateOut {
+export interface IUnitOnBeforeUpdateCheck {
   shouldUpdate: boolean;
 }
 
@@ -31,14 +30,6 @@ export interface IElement<T> {
   element: T;
 }
 
-export interface IUnitSetPropsIn<P> {
+export interface IUnitSetPropertiesOptions<P> {
   properties: P;
-}
-
-export interface IUnitGetTagBuilderOut<T> {
-  tagBuilderClass: new () => ITagBuilder<T>;
-}
-
-export interface IUnitGetFrameBuilderOut<T> {
-  frameBuilderClass: new () => IFrameBuilder<T>;
 }

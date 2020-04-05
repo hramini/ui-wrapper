@@ -1,40 +1,37 @@
-import { FrameBuilderDemo } from '../builder/builder-frame-demo-class';
-import { TagBuilderDemo } from '../builder/builder-tag-demo-class';
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable class-methods-use-this */
 import { TDemoElement } from '../type/element-type';
 import {
   IElement,
   IUnit,
-  IUnitAlterStateIn,
-  IUnitGetFrameBuilderOut,
-  IUnitGetTagBuilderOut,
-  IUnitOnBeforeUpdateOut,
-  IUnitSetPropsIn
+  IUnitAlterStateOptions,
+  IUnitOnBeforeUpdateCheck,
+  IUnitSetPropertiesOptions
 } from './unit-interface';
 
 export abstract class UnitDemo<P, S> implements IUnit<TDemoElement, P, S> {
-  private provided: TDemoElement;
-
-  protected constructor() {}
-
   public state: Readonly<S>;
   public props: Readonly<P>;
+  private provided: TDemoElement;
+
   public onBeforeProvide(): void {}
   public onAfterProvide(): void {}
-  public onBeforeUpdate(): IUnitOnBeforeUpdateOut {
+  public onBeforeUpdate(): IUnitOnBeforeUpdateCheck {
     return { shouldUpdate: true };
   }
+
   public onAfterUpdate(): void {}
   public onBeforeDispose(): void {}
-  public abstract provide(): IElement<TDemoElement>;
   public forceUpdate(): void {}
-  public alterState<K extends keyof S>(param: IUnitAlterStateIn<S, K>): void {
-    const { state, callback } = param;
+  public alterState<K extends keyof S>(param: IUnitAlterStateOptions<S, K>): void {
+    const { state, callbackFunction } = param;
     this.state = { ...this.state, ...state };
-    callback && callback();
+    callbackFunction?.();
   }
 
   public getProvided(): IElement<TDemoElement> {
-    const element: TDemoElement = this.provided;
+    const { provided: element } = this;
+
     return { element };
   }
 
@@ -47,6 +44,7 @@ export abstract class UnitDemo<P, S> implements IUnit<TDemoElement, P, S> {
 
   public onUpdate(): void {
     const { shouldUpdate } = this.onBeforeUpdate();
+
     if (shouldUpdate) {
       const { element } = this.provide();
       this.provided = element;
@@ -54,16 +52,10 @@ export abstract class UnitDemo<P, S> implements IUnit<TDemoElement, P, S> {
     }
   }
 
-  public setProps(param: IUnitSetPropsIn<P>): void {
+  public setProperties(param: IUnitSetPropertiesOptions<P>): void {
     const { properties } = param;
     this.props = properties;
   }
 
-  public getTagBuilder(): IUnitGetTagBuilderOut<TDemoElement> {
-    return { tagBuilderClass: TagBuilderDemo };
-  }
-
-  public getFrameBuilder(): IUnitGetFrameBuilderOut<TDemoElement> {
-    return { frameBuilderClass: FrameBuilderDemo };
-  }
+  public abstract provide(): IElement<TDemoElement>;
 }

@@ -1,66 +1,84 @@
+import { ElementTag, VirtualDocument, VirtualDocumentDemo } from 'virtual-document';
 import { TDemoElement } from '../type/element-type';
-import { VirtualDocument } from '../virtual-document/virtual-document-class';
 import { Primer } from './primer-class';
 import { PrimerDemo } from './primer-demo-class';
 
-describe('@Primer', () => {
+describe('@Primer', (): void => {
   let doc: VirtualDocument;
+  let documentDemo: VirtualDocumentDemo;
   let primer: Primer<TDemoElement>;
-  beforeAll(() => {
+  beforeEach((): void => {
     doc = new VirtualDocument();
-    doc.createBase();
-    primer = new Primer<TDemoElement>({ primer: PrimerDemo });
+    documentDemo = new VirtualDocumentDemo({ virtualDocument: doc });
+    documentDemo.createBase();
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    primer = new Primer<TDemoElement>({ PrimerClass: PrimerDemo });
   });
 
-  describe('#setElement', () => {
-    beforeAll(() => {
-      const { element: setElementDiv } = doc.makeElement({ tagName: 'div' });
-      setElementDiv.id = 'set_element_div';
+  describe('#setElement', (): void => {
+    test('testing setElement using getElement', (): void => {
+      const { element: setElementDiv } = doc.makeElement({ tagName: ElementTag.DIV });
+      VirtualDocument.setId({ source: setElementDiv, identifier: 'set_element_div' });
       primer.setElement({ element: setElementDiv.outerHTML });
-    });
 
-    test('testing setElement using getElement', () => {
-      expect(primer.getElement().element).toBe('<div id="set_element_div"/>');
+      const {
+        entryPrimer: { element }
+      } = primer;
+
+      expect(element).toBe('<div id="set_element_div"/>');
     });
   });
 
-  describe('#setTarget', () => {
-    beforeAll(() => {
-      const { element: setTargetElement } = doc.findElementById({ id: 'root' });
+  describe('#setTarget', (): void => {
+    test('testing setTarget using getTarget', (): void => {
+      const { element: setTargetElement } = doc.findElementById({ identifier: 'root' });
       primer.setTarget({ target: setTargetElement });
-    });
+      const {
+        entryPrimer: {
+          // eslint-disable-next-line id-length
+          target: { id: identifier }
+        }
+      } = primer;
 
-    test('testing setTarget using getTarget', () => {
-      expect(primer.getTarget().target.id).toBe('root');
+      expect(identifier).toBe('root');
     });
   });
 
-  describe('#start', () => {
-    let primerForStart: Primer<TDemoElement>;
-    beforeAll(() => {
-      primerForStart = new Primer<TDemoElement>({ primer: PrimerDemo });
-      const { element } = doc.makeElement({ tagName: 'div' });
-      element.id = 'element_for_start';
-      element.innerHTML = 'inner-test';
-      primerForStart.setElement({
-        element: element.outerHTML
+  describe('#start', (): void => {
+    test('test appended element and its parent after start', (): void => {
+      const { element } = doc.makeElement({ tagName: ElementTag.DIV });
+      VirtualDocument.setId({
+        source: element,
+        identifier: 'element_for_start'
       });
-
-      const { element: target } = doc.findElementById({ id: 'root' });
-      primerForStart.setTarget({
+      VirtualDocument.setInnerHtml({
+        source: element,
+        innerHtml: 'inner-test'
+      });
+      const { outerHTML } = element;
+      primer.setElement({
+        element: outerHTML
+      });
+      const { element: target } = doc.findElementById({ identifier: 'root' });
+      primer.setTarget({
         target
       });
-      primerForStart.start();
-    });
+      primer.start();
 
-    test('test tagName of appended element after start', () => {
-      const { element } = doc.findElementById({ id: 'element_for_start' });
-      expect(element.tagName).toBe('div');
-    });
+      const { isFound: isChildElementFound, element: childElement } = doc.findElementById({
+        identifier: 'element_for_start'
+      });
+      const {
+        isFound: isParentElementFound,
+        // eslint-disable-next-line id-length
+        parentElement: { id: parentElementId }
+      } = VirtualDocument.getParentElement({ element: childElement });
+      const { tagName: childElementTagName } = childElement;
 
-    test('test parent of appended element after start', () => {
-      const { element } = doc.findParentElementByChildId({ id: 'element_for_start' });
-      expect(element.id).toBe('root');
+      expect(isChildElementFound).toBeTruthy();
+      expect(childElementTagName).toBe('div');
+      expect(isParentElementFound).toBeTruthy();
+      expect(parentElementId).toBe('root');
     });
   });
 });

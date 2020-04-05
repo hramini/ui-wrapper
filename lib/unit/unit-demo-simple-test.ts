@@ -1,53 +1,60 @@
 import { CustomDemoSimple } from './custom-simple-demo-unit';
 
-describe('@UnitDemo / no override', () => {
+describe('@UnitDemo / no override', (): void => {
   let customDemo: CustomDemoSimple;
-  beforeEach(() => {
+  beforeEach((): void => {
     customDemo = new CustomDemoSimple();
   });
 
-  describe('#provide', () => {
-    test('provide should return a string', () => {
+  describe('#provide', (): void => {
+    test('provide should return a string', (): void => {
       const { element } = customDemo.provide();
+
       expect(element).toBe('on-constructor');
     });
   });
 
-  describe('#onProvide', () => {
-    beforeEach(() => {
+  describe('#onProvide', (): void => {
+    beforeEach((): void => {
       customDemo.onProvide();
     });
-    test('onBeforeProvide should not change the result of provide', () => {
+
+    test('onBeforeProvide should not change the result of provide', (): void => {
       const { element } = customDemo.getProvided();
+
       expect(element).toBe('on-constructor');
     });
 
-    test('onAfterProvide should not change the result of provide', () => {
+    test('onAfterProvide should not change the result of provide', (): void => {
       const { element } = customDemo.provide();
+
       expect(element).toBe('on-constructor');
     });
   });
 
-  describe('#onUpdate', () => {
-    test('onBeforeUpdate should not change the result of provide', () => {
+  describe('#onUpdate', (): void => {
+    test('onBeforeUpdate should not change the result of provide', (): void => {
       customDemo.onUpdate();
       const { element } = customDemo.getProvided();
+
       expect(element).toBe('on-constructor');
     });
   });
 
-  describe('#onBeforeDispose', () => {
-    test('on before dispose test', () => {
+  describe('#onBeforeDispose', (): void => {
+    test('on before dispose test', (): void => {
       customDemo.onBeforeDispose();
       const { element } = customDemo.provide();
+
       expect(element).toBe('on-constructor');
     });
   });
 
-  describe('#forceUpdate', () => {
-    test('forceUpdate test', () => {
+  describe('#forceUpdate', (): void => {
+    test('forceUpdate test', (): void => {
       customDemo.forceUpdate();
       const { element } = customDemo.provide();
+
       expect(element).toBe('on-constructor');
     });
   });

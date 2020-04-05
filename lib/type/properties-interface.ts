@@ -1,4 +1,4 @@
-export interface Properties<T> {
+export interface IBasicProperties<T> {
   key?: string | number;
-  children?: string | Array<string | T>;
+  children?: string | (string | T)[];
 }
