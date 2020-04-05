@@ -2,30 +2,23 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Primer {
     constructor(entry) {
-        const { primer: primerClass } = entry;
-        this.entryPrimer = new primerClass();
-    }
-    getElement() {
-        return { element: this.element };
+        const { PrimerClass } = entry;
+        this.entryPrimer = new PrimerClass();
     }
     setElement(param) {
         const { element } = param;
-        this.element = element;
-    }
-    getTarget() {
-        return { target: this.target };
+        this.entryPrimer.setElement({
+            element
+        });
     }
     setTarget(param) {
         const { target } = param;
-        this.target = target;
-    }
-    start() {
-        const { element } = this.getElement();
-        const { target } = this.getTarget();
-        this.entryPrimer.start({
-            element,
+        this.entryPrimer.setTarget({
             target
         });
+    }
+    start() {
+        this.entryPrimer.start();
     }
 }
 exports.Primer = Primer;

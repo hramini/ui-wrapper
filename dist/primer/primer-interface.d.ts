@@ -1,16 +1,16 @@
 export interface IPrimer<T> {
-    start(param: PrimerStartOptions<T>): void;
-}
-export interface PrimerStartOptions<T> {
     element: T;
     target: HTMLElement;
+    setElement(param: IPrimerElement<T>): void;
+    setTarget(param: IPrimerTarget): void;
+    start(): void;
 }
 export interface IPrimerEntry<T> {
-    primer: new () => IPrimer<T>;
+    PrimerClass: new () => IPrimer<T>;
 }
-export interface PrimerElement<T> {
+export interface IPrimerElement<T> {
     element: T;
 }
-export interface PrimerTarget {
+export interface IPrimerTarget {
     target: HTMLElement;
 }

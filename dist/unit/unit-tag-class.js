@@ -8,5 +8,10 @@ class UnitTag extends unit_class_1.Unit {
         const { tagBuilderInstance } = builder_class_1.Builder.getTagBuilder();
         this.builder = tagBuilderInstance;
     }
+    buildElement(param) {
+        const { name, properties, children } = param;
+        const { element } = this.builder.buildElement({ children, name, properties });
+        return { element };
+    }
 }
 exports.UnitTag = UnitTag;

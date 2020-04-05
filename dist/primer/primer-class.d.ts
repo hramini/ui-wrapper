@@ -1,12 +1,8 @@
-import { IPrimerEntry, PrimerElement, PrimerTarget } from './primer-interface';
+import { IPrimer, IPrimerElement, IPrimerEntry, IPrimerTarget } from './primer-interface';
 export declare class Primer<T> {
-    private entryPrimer;
-    private element;
-    private target;
+    readonly entryPrimer: IPrimer<T>;
     constructor(entry: IPrimerEntry<T>);
-    getElement(): PrimerElement<T>;
-    setElement(param: PrimerElement<T>): void;
-    getTarget(): PrimerTarget;
-    setTarget(param: PrimerTarget): void;
+    setElement(param: IPrimerElement<T>): void;
+    setTarget(param: IPrimerTarget): void;
     start(): void;
 }

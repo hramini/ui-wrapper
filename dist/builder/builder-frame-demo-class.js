@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class FrameBuilderDemo {
-    buildElement(elementOption) {
-        const { name } = elementOption;
-        const unit = new name();
+    buildElement(param) {
+        const { name: UnitClass } = param;
+        const unit = new UnitClass();
         const { element } = unit.provide();
         return { element };
     }

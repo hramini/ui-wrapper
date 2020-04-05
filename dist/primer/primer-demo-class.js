@@ -1,9 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class PrimerDemo {
-    start(param) {
-        const { element, target } = param;
-        target.innerHTML = element;
+    setElement(param) {
+        const { element } = param;
+        this.element = element;
+    }
+    setTarget(param) {
+        const { target } = param;
+        this.target = target;
+    }
+    start() {
+        this.target.innerHTML = this.element;
     }
 }
 exports.PrimerDemo = PrimerDemo;

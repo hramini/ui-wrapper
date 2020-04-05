@@ -1,7 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const builder_frame_demo_class_1 = require("../builder/builder-frame-demo-class");
-const builder_tag_demo_class_1 = require("../builder/builder-tag-demo-class");
 const custom_demo_unit_1 = require("./custom-demo-unit");
 describe('@UnitDemo', () => {
     let customDemo;
@@ -10,8 +8,7 @@ describe('@UnitDemo', () => {
     });
     describe('#constructor', () => {
         test('testing unit demo constructor', () => {
-            const customUnitDemo = new custom_demo_unit_1.CustomDemo();
-            expect(customUnitDemo).toBeInstanceOf(custom_demo_unit_1.CustomDemo);
+            expect(customDemo).toBeInstanceOf(custom_demo_unit_1.CustomDemo);
         });
     });
     describe('#provide', () => {
@@ -84,16 +81,17 @@ describe('@UnitDemo', () => {
                     name: 'test-name'
                 }
             });
-            expect(customDemo.state.name).toBe('test-name');
+            const { name } = customDemo.state;
+            expect(name).toBe('test-name');
         });
         test('change the state of CustomDemo with callback', () => {
             let testText = 'test-text';
             customDemo.alterState({
+                callbackFunction() {
+                    testText = 'changed-test-text';
+                },
                 state: {
                     name: 'test-name'
-                },
-                callback() {
-                    testText = 'changed-test-text';
                 }
             });
             expect(testText).toBe('changed-test-text');
@@ -107,26 +105,13 @@ describe('@UnitDemo', () => {
     });
     describe('#setProps', () => {
         test('testing serProps', () => {
-            customDemo.setProps({
+            customDemo.setProperties({
                 properties: {
                     name: 'test-name'
                 }
             });
-            expect(customDemo.props.name).toBe('test-name');
-        });
-    });
-    describe('#getTagBuilder', () => {
-        test('getTagBuilder should return a class of TagBuilderDemo type', () => {
-            const { tagBuilderClass } = customDemo.getTagBuilder();
-            const tagBuilderInstance = new tagBuilderClass();
-            expect(tagBuilderInstance).toBeInstanceOf(builder_tag_demo_class_1.TagBuilderDemo);
-        });
-    });
-    describe('#getFrameBuilder', () => {
-        test('getFrameBuilder should return a class of FrameBuilderDemo type', () => {
-            const { frameBuilderClass } = customDemo.getFrameBuilder();
-            const frameBuilderInstance = new frameBuilderClass();
-            expect(frameBuilderInstance).toBeInstanceOf(builder_frame_demo_class_1.FrameBuilderDemo);
+            const { name } = customDemo.props;
+            expect(name).toBe('test-name');
         });
     });
 });

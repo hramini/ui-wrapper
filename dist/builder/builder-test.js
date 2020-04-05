@@ -5,7 +5,7 @@ const builder_class_1 = require("./builder-class");
 const builder_frame_demo_class_1 = require("./builder-frame-demo-class");
 const builder_tag_demo_class_1 = require("./builder-tag-demo-class");
 describe('@Builder', () => {
-    describe('#geTagBuilder', () => {
+    describe('$#geTagBuilder', () => {
         test('test getTagBuilder with TagBuilderDemo', () => {
             const { tagBuilderInstance } = builder_class_1.Builder.getTagBuilder();
             expect(tagBuilderInstance).toBeUndefined();
@@ -18,7 +18,7 @@ describe('@Builder', () => {
             expect(tagBuilderInstance).toBeInstanceOf(builder_class_1.Builder);
         });
     });
-    describe('#geFrameBuilder', () => {
+    describe('$#geFrameBuilder', () => {
         test('test getFrameBuilder with FrameBuilderDemo', () => {
             const { frameBuilderInstance } = builder_class_1.Builder.getFrameBuilder();
             expect(frameBuilderInstance).toBeUndefined();
@@ -43,18 +43,18 @@ describe('@Builder', () => {
         test('test buildElement method of tagBuilder', () => {
             const { tagBuilderInstance } = builder_class_1.Builder.getTagBuilder();
             const { element } = tagBuilderInstance.buildElement({
+                children: [],
                 name: 'test-tag',
-                properties: null,
-                children: []
+                properties: null
             });
             expect(element).toBe('test-tag');
         });
         test('test buildElement method of frameBuilder', () => {
             const { frameBuilderInstance } = builder_class_1.Builder.getFrameBuilder();
             const { element } = frameBuilderInstance.buildElement({
+                children: [],
                 name: custom_demo_unit_1.CustomDemo,
-                properties: null,
-                children: []
+                properties: null
             });
             expect(element).toBe('on-constructor');
         });

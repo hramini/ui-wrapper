@@ -1,9 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const builder_frame_demo_class_1 = require("../builder/builder-frame-demo-class");
-const builder_tag_demo_class_1 = require("../builder/builder-tag-demo-class");
 class UnitDemo {
-    constructor() { }
     onBeforeProvide() { }
     onAfterProvide() { }
     onBeforeUpdate() {
@@ -13,12 +10,13 @@ class UnitDemo {
     onBeforeDispose() { }
     forceUpdate() { }
     alterState(param) {
-        const { state, callback } = param;
+        var _a;
+        const { state, callbackFunction } = param;
         this.state = Object.assign(Object.assign({}, this.state), state);
-        callback && callback();
+        (_a = callbackFunction) === null || _a === void 0 ? void 0 : _a();
     }
     getProvided() {
-        const element = this.provided;
+        const { provided: element } = this;
         return { element };
     }
     onProvide() {
@@ -35,15 +33,9 @@ class UnitDemo {
             this.onAfterUpdate();
         }
     }
-    setProps(param) {
+    setProperties(param) {
         const { properties } = param;
         this.props = properties;
-    }
-    getTagBuilder() {
-        return { tagBuilderClass: builder_tag_demo_class_1.TagBuilderDemo };
-    }
-    getFrameBuilder() {
-        return { frameBuilderClass: builder_frame_demo_class_1.FrameBuilderDemo };
     }
 }
 exports.UnitDemo = UnitDemo;

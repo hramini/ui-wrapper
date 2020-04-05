@@ -1,22 +1,19 @@
 import { TDemoElement } from '../type/element-type';
-import { IElement, IUnit, IUnitAlterStateIn, IUnitGetFrameBuilderOut, IUnitGetTagBuilderOut, IUnitOnBeforeUpdateOut, IUnitSetPropsIn } from './unit-interface';
+import { IElement, IUnit, IUnitAlterStateOptions, IUnitOnBeforeUpdateCheck, IUnitSetPropertiesOptions } from './unit-interface';
 export declare abstract class UnitDemo<P, S> implements IUnit<TDemoElement, P, S> {
-    private provided;
-    protected constructor();
     state: Readonly<S>;
     props: Readonly<P>;
+    private provided;
     onBeforeProvide(): void;
     onAfterProvide(): void;
-    onBeforeUpdate(): IUnitOnBeforeUpdateOut;
+    onBeforeUpdate(): IUnitOnBeforeUpdateCheck;
     onAfterUpdate(): void;
     onBeforeDispose(): void;
-    abstract provide(): IElement<TDemoElement>;
     forceUpdate(): void;
-    alterState<K extends keyof S>(param: IUnitAlterStateIn<S, K>): void;
+    alterState<K extends keyof S>(param: IUnitAlterStateOptions<S, K>): void;
     getProvided(): IElement<TDemoElement>;
     onProvide(): void;
     onUpdate(): void;
-    setProps(param: IUnitSetPropsIn<P>): void;
-    getTagBuilder(): IUnitGetTagBuilderOut<TDemoElement>;
-    getFrameBuilder(): IUnitGetFrameBuilderOut<TDemoElement>;
+    setProperties(param: IUnitSetPropertiesOptions<P>): void;
+    abstract provide(): IElement<TDemoElement>;
 }

@@ -8,5 +8,10 @@ class UnitFrame extends unit_class_1.Unit {
         const { frameBuilderInstance } = builder_class_1.Builder.getFrameBuilder();
         this.builder = frameBuilderInstance;
     }
+    buildElement(param) {
+        const { name, properties, children } = param;
+        const { element } = this.builder.buildElement({ children, name, properties });
+        return { element };
+    }
 }
 exports.UnitFrame = UnitFrame;

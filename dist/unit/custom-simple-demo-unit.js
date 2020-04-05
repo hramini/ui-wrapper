@@ -4,10 +4,17 @@ const unit_demo_class_1 = require("./unit-demo-class");
 class CustomDemoSimple extends unit_demo_class_1.UnitDemo {
     constructor() {
         super();
-        this.provideText = 'on-constructor';
+        this.setProvideText({
+            provideText: 'on-constructor'
+        });
     }
     provide() {
-        return { element: this.provideText };
+        const { provideText: element } = this;
+        return { element };
+    }
+    setProvideText(param) {
+        const { provideText } = param;
+        this.provideText = provideText;
     }
 }
 exports.CustomDemoSimple = CustomDemoSimple;

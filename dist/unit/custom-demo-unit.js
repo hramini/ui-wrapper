@@ -4,34 +4,54 @@ const unit_demo_class_1 = require("./unit-demo-class");
 class CustomDemo extends unit_demo_class_1.UnitDemo {
     constructor() {
         super();
-        this.provideText = 'on-constructor';
+        this.setProvideText({
+            provideText: 'on-constructor'
+        });
         this.changeShouldUpdate({ status: true });
     }
     onBeforeProvide() {
-        this.provideText = 'on-before-provide';
+        this.setProvideText({
+            provideText: 'on-before-provide'
+        });
     }
     onAfterProvide() {
-        this.provideText = 'on-after-provide';
+        this.setProvideText({
+            provideText: 'on-after-provide'
+        });
     }
     onBeforeUpdate() {
-        this.provideText = 'on-before-update';
-        return { shouldUpdate: this.shouldUpdate };
+        const { shouldUpdate } = this;
+        this.setProvideText({
+            provideText: 'on-before-update'
+        });
+        return { shouldUpdate };
     }
     onAfterUpdate() {
-        this.provideText = 'on-after-update';
+        this.setProvideText({
+            provideText: 'on-after-update'
+        });
     }
     onBeforeDispose() {
-        this.provideText = '';
+        this.setProvideText({
+            provideText: ''
+        });
     }
     forceUpdate() {
-        this.provideText = 'force-update';
+        this.setProvideText({
+            provideText: 'force-update'
+        });
     }
     provide() {
-        return { element: this.provideText };
+        const { provideText: element } = this;
+        return { element };
     }
     changeShouldUpdate(param) {
         const { status } = param;
         this.shouldUpdate = status;
+    }
+    setProvideText(param) {
+        const { provideText } = param;
+        this.provideText = provideText;
     }
 }
 exports.CustomDemo = CustomDemo;

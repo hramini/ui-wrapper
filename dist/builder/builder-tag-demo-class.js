@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class TagBuilderDemo {
-    buildElement(elementOption) {
-        const { name } = elementOption;
+    buildElement(param) {
+        const { name } = param;
         return { element: name };
     }
 }

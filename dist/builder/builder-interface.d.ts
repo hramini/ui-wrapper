@@ -1,16 +1,16 @@
-import { ElementOption, FrameElementOption, TagElementOption } from '../type/element-option-interface';
+import { IElementOption, IFrameElementOption, ITagElementOption } from '../type/element-option-interface';
 import { IElement } from '../unit/unit-interface';
 export interface IBuilder<T> {
-    buildElement<P, S>(elementOption: ElementOption<T, P, S>): IElement<T>;
+    buildElement<P, S>(elementOption: IElementOption<T, P, S>): IElement<T>;
 }
 export interface ITagBuilder<T> extends IBuilder<T> {
-    buildElement<P, S>(elementOption: TagElementOption<T, P, S>): IElement<T>;
+    buildElement<P, S>(elementOption: ITagElementOption<T, P, S>): IElement<T>;
 }
 export interface IFrameBuilder<T> extends IBuilder<T> {
-    buildElement<P, S>(elementOption: FrameElementOption<T, P, S>): IElement<T>;
+    buildElement<P, S>(elementOption: IFrameElementOption<T, P, S>): IElement<T>;
 }
 export interface IBuilderEntry<T> {
-    builder: new () => IBuilder<T>;
+    BuilderClass: new () => IBuilder<T>;
 }
 export interface IBuilderSetTagBuilderIn<T> {
     tagBuilderClass: new () => ITagBuilder<T>;
