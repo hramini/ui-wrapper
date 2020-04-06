@@ -2,7 +2,7 @@
 
 export interface IBasicProperties<T> {
 	key?: string | number;
-	children?: string | (string | T)[];
+	children?: (string | T)[];
 }
 export interface IBasicStates {
 	key?: string;
