@@ -1,6 +1,3 @@
-import { IBasicProperties } from '../type/properties-interface';
-import { PickState } from '../type/states-interface';
-
 export interface IUnitLifeCycle {
   onBeforeProvide(): void;
   onAfterProvide(): void;
@@ -33,3 +30,17 @@ export interface IElement<T> {
 export interface IUnitSetPropertiesOptions<P> {
   properties: P;
 }
+
+export interface IBasicProperties<T> {
+  key?: string | number;
+  children?: (string | T)[];
+}
+
+export interface IBasicStates {
+  key?: string;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-type-alias
+export type PickState<S, K extends keyof S> = {
+  [P in K]: S[P];
+};

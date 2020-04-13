@@ -3,115 +3,152 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const custom_demo_unit_1 = require("./custom-demo-unit");
 describe('@UnitDemo', () => {
     let customDemo;
+    const onConstructorValue = 'on-constructor';
+    const onBeforeProvideValue = 'on-before-provide';
+    const onAfterProvideValue = 'on-after-provide';
+    const onBeforeUpdateValue = 'on-before-update';
+    const onAfterUpdateValue = 'on-after-update';
+    const onBeforeDisposeValue = 'on-before-dispose';
+    const forceUpdateValue = 'force-update';
     beforeEach(() => {
         customDemo = new custom_demo_unit_1.CustomDemo();
     });
     describe('#constructor', () => {
-        test('testing unit demo constructor', () => {
+        test('expects to be an instance of @CustomDemo', () => {
             expect(customDemo).toBeInstanceOf(custom_demo_unit_1.CustomDemo);
         });
     });
     describe('#provide', () => {
-        test('provide should return a string', () => {
+        test(`expects element to be ${onConstructorValue} when non of lifeCycle method is called`, () => {
             const { element } = customDemo.provide();
-            expect(element).toBe('on-constructor');
+            expect(element).toBe(onConstructorValue);
+        });
+    });
+    describe('#onBeforeProvide', () => {
+        test(`expects element to change to ${onBeforeProvideValue}`, () => {
+            customDemo.onBeforeProvide();
+            const { element } = customDemo.provide();
+            expect(element).toBe(onBeforeProvideValue);
+        });
+    });
+    describe('#onAfterProvide', () => {
+        test(`expects element to change to ${onAfterProvideValue}`, () => {
+            customDemo.onAfterProvide();
+            const { element } = customDemo.provide();
+            expect(element).toBe(onAfterProvideValue);
+        });
+    });
+    describe('#onBeforeUpdate', () => {
+        test(`expects element to change to ${onBeforeUpdateValue} when shouldUpdate is true`, () => {
+            customDemo.changeShouldUpdate({ status: true });
+            const { shouldUpdate } = customDemo.onBeforeUpdate();
+            const { element } = customDemo.provide();
+            expect(shouldUpdate).toBeTruthy();
+            expect(element).toBe(onBeforeUpdateValue);
+        });
+        test(`expects element to change to ${onBeforeUpdateValue} even if when shouldUpdate is false`, () => {
+            customDemo.changeShouldUpdate({ status: false });
+            const { shouldUpdate } = customDemo.onBeforeUpdate();
+            const { element } = customDemo.provide();
+            expect(shouldUpdate).toBeFalsy();
+            expect(element).toBe(onBeforeUpdateValue);
+        });
+    });
+    describe('#onAfterUpdate', () => {
+        test(`expects element to change to ${onAfterUpdateValue}`, () => {
+            customDemo.onAfterUpdate();
+            const { element } = customDemo.provide();
+            expect(element).toBe(onAfterUpdateValue);
         });
     });
     describe('#onBeforeDispose', () => {
-        test('on before dispose test', () => {
+        test(`expects element to change to ${onBeforeDisposeValue}`, () => {
             customDemo.onBeforeDispose();
             const { element } = customDemo.provide();
-            expect(element).toBe('');
-        });
-    });
-    describe('#changeShouldUpdate', () => {
-        test('when status is true', () => {
-            customDemo.changeShouldUpdate({ status: true });
-            const { shouldUpdate } = customDemo.onBeforeUpdate();
-            expect(shouldUpdate).toBeTruthy();
-        });
-        test('when status is false', () => {
-            customDemo.changeShouldUpdate({ status: false });
-            const { shouldUpdate } = customDemo.onBeforeUpdate();
-            expect(shouldUpdate).toBeFalsy();
+            expect(element).toBe(onBeforeDisposeValue);
         });
     });
     describe('#onProvide', () => {
         beforeEach(() => {
             customDemo.onProvide();
         });
-        test('onBeforeProvide should change the result of provide', () => {
+        test(`expects element to be ${onBeforeProvideValue} when #onAfterProvide is not called yet`, () => {
             const { element } = customDemo.getProvided();
-            expect(element).toBe('on-before-provide');
+            expect(element).toBe(onBeforeProvideValue);
         });
-        test('onAfterProvide should change the result of provide', () => {
+        test(`expects element to be ${onAfterProvideValue} when calling method is completed`, () => {
             const { element } = customDemo.provide();
-            expect(element).toBe('on-after-provide');
+            expect(element).toBe(onAfterProvideValue);
         });
     });
     describe('#onUpdate', () => {
-        test('onBeforeUpdate should change the result of provide', () => {
+        test(`expects element to be ${onBeforeUpdateValue} when #onAfterUpdate is not called yet`, () => {
             customDemo.onUpdate();
             const { element } = customDemo.getProvided();
-            expect(element).toBe('on-before-update');
+            expect(element).toBe(onBeforeUpdateValue);
         });
-        test('onAfterProvide should change the result of provide if onBeforeUpdate is returned true', () => {
+        test(`expects element to be ${onAfterUpdateValue} when calling method is completed and #onBeforeUpdate is returning "true" value`, () => {
             customDemo.onUpdate();
             const { element } = customDemo.provide();
-            expect(element).toBe('on-after-update');
+            expect(element).toBe(onAfterUpdateValue);
         });
-        test('onAfterProvide should change the result of provide if onBeforeUpdate is returned false', () => {
+        test(`expects element to be ${onBeforeUpdateValue} when calling method is completed and #onBeforeUpdate is returning "false" value`, () => {
             customDemo.changeShouldUpdate({ status: false });
             customDemo.onUpdate();
             const { element } = customDemo.provide();
-            expect(element).toBe('on-before-update');
+            expect(element).toBe(onBeforeUpdateValue);
         });
     });
     describe('#forceUpdate', () => {
-        test('forceUpdate test', () => {
+        test(`expects element to be ${forceUpdateValue}`, () => {
             customDemo.forceUpdate();
             const { element } = customDemo.provide();
-            expect(element).toBe('force-update');
+            expect(element).toBe(forceUpdateValue);
         });
     });
     describe('#alterState', () => {
-        test('change the state of CustomDemo without callback', () => {
+        const newNameState = 'test-name';
+        const newTestTextValue = 'changed-test-text';
+        test(`expects name state to change and be ${newNameState}`, () => {
             customDemo.alterState({
                 state: {
-                    name: 'test-name'
+                    name: newNameState
                 }
             });
             const { name } = customDemo.state;
-            expect(name).toBe('test-name');
+            expect(name).toBe(newNameState);
         });
-        test('change the state of CustomDemo with callback', () => {
+        test(`expects name state to change and be ${newNameState} and its callbackFunction changes the "testText" Value to ${newTestTextValue}`, () => {
             let testText = 'test-text';
             customDemo.alterState({
                 callbackFunction() {
-                    testText = 'changed-test-text';
+                    testText = newTestTextValue;
                 },
                 state: {
-                    name: 'test-name'
+                    name: newNameState
                 }
             });
-            expect(testText).toBe('changed-test-text');
+            const { name } = customDemo.state;
+            expect(name).toBe(newNameState);
+            expect(testText).toBe(newTestTextValue);
         });
     });
     describe('#getProvided', () => {
-        test('testing getProvided', () => {
+        test('expects element to be undefined in case #onProvide is not executed yet', () => {
             const { element } = customDemo.getProvided();
             expect(element).toBeUndefined();
         });
     });
     describe('#setProps', () => {
-        test('testing serProps', () => {
+        const newNameProps = 'test-name';
+        test(`expects name props to change and be ${newNameProps}`, () => {
             customDemo.setProperties({
                 properties: {
-                    name: 'test-name'
+                    name: newNameProps
                 }
             });
             const { name } = customDemo.props;
-            expect(name).toBe('test-name');
+            expect(name).toBe(newNameProps);
         });
     });
 });

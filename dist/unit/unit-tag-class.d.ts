@@ -1,5 +1,4 @@
-import { ITagBuilder } from '../builder/builder-interface';
-import { ITagElementOption } from '../type/element-option-interface';
+import { ITagBuilder, ITagElementOption } from '../builder/builder-interface';
 import { Unit } from './unit-class';
 import { IElement } from './unit-interface';
 export declare abstract class UnitTag<T, P, S> extends Unit<T, P, S> {

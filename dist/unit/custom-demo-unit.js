@@ -33,7 +33,7 @@ class CustomDemo extends unit_demo_class_1.UnitDemo {
     }
     onBeforeDispose() {
         this.setProvideText({
-            provideText: ''
+            provideText: 'on-before-dispose'
         });
     }
     forceUpdate() {

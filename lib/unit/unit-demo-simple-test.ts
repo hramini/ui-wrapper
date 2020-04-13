@@ -2,15 +2,16 @@ import { CustomDemoSimple } from './custom-simple-demo-unit';
 
 describe('@UnitDemo / no override', (): void => {
   let customDemo: CustomDemoSimple;
+  const elementValue: string = 'on-constructor';
   beforeEach((): void => {
     customDemo = new CustomDemoSimple();
   });
 
   describe('#provide', (): void => {
-    test('provide should return a string', (): void => {
+    test(`expects element to be ${elementValue}`, (): void => {
       const { element } = customDemo.provide();
 
-      expect(element).toBe('on-constructor');
+      expect(element).toBe(elementValue);
     });
   });
 
@@ -19,43 +20,43 @@ describe('@UnitDemo / no override', (): void => {
       customDemo.onProvide();
     });
 
-    test('onBeforeProvide should not change the result of provide', (): void => {
+    test(`expects element to be ${elementValue}`, (): void => {
       const { element } = customDemo.getProvided();
 
-      expect(element).toBe('on-constructor');
+      expect(element).toBe(elementValue);
     });
 
-    test('onAfterProvide should not change the result of provide', (): void => {
+    test(`expects element to be ${elementValue}`, (): void => {
       const { element } = customDemo.provide();
 
-      expect(element).toBe('on-constructor');
+      expect(element).toBe(elementValue);
     });
   });
 
   describe('#onUpdate', (): void => {
-    test('onBeforeUpdate should not change the result of provide', (): void => {
+    test(`expects element to be ${elementValue}`, (): void => {
       customDemo.onUpdate();
       const { element } = customDemo.getProvided();
 
-      expect(element).toBe('on-constructor');
+      expect(element).toBe(elementValue);
     });
   });
 
   describe('#onBeforeDispose', (): void => {
-    test('on before dispose test', (): void => {
+    test(`expects element to be ${elementValue}`, (): void => {
       customDemo.onBeforeDispose();
       const { element } = customDemo.provide();
 
-      expect(element).toBe('on-constructor');
+      expect(element).toBe(elementValue);
     });
   });
 
   describe('#forceUpdate', (): void => {
-    test('forceUpdate test', (): void => {
+    test(`expects element to be ${elementValue}`, (): void => {
       customDemo.forceUpdate();
       const { element } = customDemo.provide();
 
-      expect(element).toBe('on-constructor');
+      expect(element).toBe(elementValue);
     });
   });
 });

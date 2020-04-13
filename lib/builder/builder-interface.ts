@@ -1,9 +1,4 @@
-import {
-  IElementOption,
-  IFrameElementOption,
-  ITagElementOption
-} from '../type/element-option-interface';
-import { IElement } from '../unit/unit-interface';
+import { IElement, IUnit } from '../unit/unit-interface';
 
 export interface IBuilder<T> {
   buildElement<P, S>(elementOption: IElementOption<T, P, S>): IElement<T>;
@@ -15,6 +10,20 @@ export interface ITagBuilder<T> extends IBuilder<T> {
 
 export interface IFrameBuilder<T> extends IBuilder<T> {
   buildElement<P, S>(elementOption: IFrameElementOption<T, P, S>): IElement<T>;
+}
+
+export interface IElementOption<T, P, S> {
+  name: string | (new () => IUnit<T, P, S>);
+  properties: P;
+  children?: (string | T)[];
+}
+
+export interface ITagElementOption<T, P, S> extends IElementOption<T, P, S> {
+  name: string;
+}
+
+export interface IFrameElementOption<T, P, S> extends IElementOption<T, P, S> {
+  name: new () => IUnit<T, P, S>;
 }
 
 export interface IBuilderEntry<T> {

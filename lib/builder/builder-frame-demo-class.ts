@@ -1,7 +1,6 @@
-import { IFrameElementOption } from '../type/element-option-interface';
 import { TDemoElement } from '../type/element-type';
 import { IElement, IUnit } from '../unit/unit-interface';
-import { IFrameBuilder } from './builder-interface';
+import { IFrameBuilder, IFrameElementOption } from './builder-interface';
 
 export class FrameBuilderDemo implements IFrameBuilder<TDemoElement> {
   // eslint-disable-next-line class-methods-use-this

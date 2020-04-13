@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable class-methods-use-this */
-import { IBasicProperties } from '../type/properties-interface';
 import {
+  IBasicProperties,
   IElement,
   IUnit,
   IUnitAlterStateOptions,

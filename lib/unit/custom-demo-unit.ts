@@ -49,7 +49,7 @@ export class CustomDemo extends UnitDemo<ICustomDemoProperties, ICustomDemoState
 
   public onBeforeDispose(): void {
     this.setProvideText({
-      provideText: ''
+      provideText: 'on-before-dispose'
     });
   }
 

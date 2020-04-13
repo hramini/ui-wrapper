@@ -1,5 +1,4 @@
-import { IBasicProperties } from '../type/properties-interface';
-import { IElement, IUnit, IUnitAlterStateOptions, IUnitOnBeforeUpdateCheck } from './unit-interface';
+import { IBasicProperties, IElement, IUnit, IUnitAlterStateOptions, IUnitOnBeforeUpdateCheck } from './unit-interface';
 export declare abstract class Unit<T, P, S> implements IUnit<T, P, S> {
     props: Readonly<P> & Readonly<IBasicProperties<T>>;
     state: Readonly<S>;

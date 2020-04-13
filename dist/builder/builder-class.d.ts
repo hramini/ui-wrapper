@@ -1,6 +1,5 @@
-import { IElementOption } from '../type/element-option-interface';
 import { IElement } from '../ui-wrapper-expose';
-import { IBuilder, IBuilderGetFrameBuilderOut, IBuilderGetTagBuilderOut, IBuilderSetFrameBuilderIn, IBuilderSetTagBuilderIn } from './builder-interface';
+import { IBuilder, IBuilderGetFrameBuilderOut, IBuilderGetTagBuilderOut, IBuilderSetFrameBuilderIn, IBuilderSetTagBuilderIn, IElementOption } from './builder-interface';
 export declare class Builder<T> implements IBuilder<T> {
     private static tagBuilderInstance;
     private static frameBuilderInstance;

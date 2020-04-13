@@ -7,6 +7,8 @@ describe('@Primer', () => {
     let doc;
     let documentDemo;
     let primer;
+    const setElementId = 'set_element_div';
+    const setTargetId = 'root';
     beforeEach(() => {
         doc = new virtual_document_1.VirtualDocument();
         documentDemo = new virtual_document_1.VirtualDocumentDemo({ virtualDocument: doc });
@@ -14,28 +16,28 @@ describe('@Primer', () => {
         primer = new primer_class_1.Primer({ PrimerClass: primer_demo_class_1.PrimerDemo });
     });
     describe('#setElement', () => {
-        test('testing setElement using getElement', () => {
+        test(`expects element to be a string html with ${setElementId} as id`, () => {
             const { element: setElementDiv } = doc.makeElement({ tagName: virtual_document_1.ElementTag.DIV });
-            virtual_document_1.VirtualDocument.setId({ source: setElementDiv, identifier: 'set_element_div' });
+            virtual_document_1.VirtualDocument.setId({ source: setElementDiv, identifier: setElementId });
             primer.setElement({ element: setElementDiv.outerHTML });
             const { entryPrimer: { element } } = primer;
-            expect(element).toBe('<div id="set_element_div"/>');
+            expect(element).toBe(`<div id="${setElementId}"/>`);
         });
     });
     describe('#setTarget', () => {
-        test('testing setTarget using getTarget', () => {
-            const { element: setTargetElement } = doc.findElementById({ identifier: 'root' });
+        test(`expects target to be an element with ${setTargetId} as id`, () => {
+            const { element: setTargetElement } = doc.findElementById({ identifier: setTargetId });
             primer.setTarget({ target: setTargetElement });
             const { entryPrimer: { target: { id: identifier } } } = primer;
-            expect(identifier).toBe('root');
+            expect(identifier).toBe(setTargetId);
         });
     });
     describe('#start', () => {
-        test('test appended element and its parent after start', () => {
+        test(`expects an element with ${setTargetId} id, have been appended an element with ${setElementId} id in itself`, () => {
             const { element } = doc.makeElement({ tagName: virtual_document_1.ElementTag.DIV });
             virtual_document_1.VirtualDocument.setId({
                 source: element,
-                identifier: 'element_for_start'
+                identifier: setElementId
             });
             virtual_document_1.VirtualDocument.setInnerHtml({
                 source: element,
@@ -45,20 +47,20 @@ describe('@Primer', () => {
             primer.setElement({
                 element: outerHTML
             });
-            const { element: target } = doc.findElementById({ identifier: 'root' });
+            const { element: target } = doc.findElementById({ identifier: setTargetId });
             primer.setTarget({
                 target
             });
             primer.start();
             const { isFound: isChildElementFound, element: childElement } = doc.findElementById({
-                identifier: 'element_for_start'
+                identifier: setElementId
             });
             const { isFound: isParentElementFound, parentElement: { id: parentElementId } } = virtual_document_1.VirtualDocument.getParentElement({ element: childElement });
-            const { tagName: childElementTagName } = childElement;
+            const { id: childElementId } = childElement;
             expect(isChildElementFound).toBeTruthy();
-            expect(childElementTagName).toBe('div');
+            expect(childElementId).toBe(setElementId);
             expect(isParentElementFound).toBeTruthy();
-            expect(parentElementId).toBe('root');
+            expect(parentElementId).toBe(setTargetId);
         });
     });
 });
