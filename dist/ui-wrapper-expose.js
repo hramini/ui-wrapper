@@ -1,7 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var builder_class_1 = require("./builder/builder-class");
-exports.Builder = builder_class_1.Builder;
+var frame_builder_class_1 = require("./builder/frame/frame-builder-class");
+exports.FrameBuilder = frame_builder_class_1.FrameBuilder;
+var tag_builder_class_1 = require("./builder/tag/tag-builder-class");
+exports.TagBuilder = tag_builder_class_1.TagBuilder;
 var primer_class_1 = require("./primer/primer-class");
 exports.Primer = primer_class_1.Primer;
 var unit_class_1 = require("./unit/unit-class");
