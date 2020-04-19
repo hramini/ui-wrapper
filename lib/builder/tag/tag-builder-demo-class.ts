@@ -4,9 +4,7 @@ import { ITagBuilder, ITagElementOption } from './tag-builder-interface';
 
 export class TagBuilderDemo implements ITagBuilder<TDemoElement> {
   // eslint-disable-next-line class-methods-use-this
-  public buildElement<P = never, RequiredP extends P = P>(
-    param: ITagElementOption<TDemoElement, RequiredP>
-  ): IElement<TDemoElement> {
+  public buildElement<P>(param: ITagElementOption<TDemoElement, P>): IElement<TDemoElement> {
     const { name } = param;
 
     return { element: name };

@@ -4,8 +4,8 @@ import { IFrameBuilder, IFrameElementOption } from './frame-builder-interface';
 
 export class FrameBuilderDemo implements IFrameBuilder<TDemoElement> {
   // eslint-disable-next-line class-methods-use-this
-  public buildElement<P = never, S = never, RequiredP extends P = P, RequiredS extends S = S>(
-    param: IFrameElementOption<TDemoElement, RequiredP, RequiredS>
+  public buildElement<P, S>(
+    param: IFrameElementOption<TDemoElement, P, S>
   ): IElement<TDemoElement> {
     const { UnitConstructor } = param;
     const unit: IUnit<TDemoElement, P, S> = new UnitConstructor();
