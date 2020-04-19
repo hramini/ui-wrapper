@@ -10,6 +10,7 @@ import {
 } from './builder-interface';
 
 export class Builder<T> implements IBuilder<T> {
+  // HACK: these properties will never get any type as its generic type cause the setter methods are getting a required type
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private static tagBuilderInstance: Builder<any>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -17,28 +18,25 @@ export class Builder<T> implements IBuilder<T> {
   private readonly builder: IBuilder<T>;
 
   private constructor(entry: IBuilderEntry<T>) {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    const { BuilderClass } = entry;
-    this.builder = new BuilderClass();
+    const { BuilderConstructor } = entry;
+    this.builder = new BuilderConstructor();
   }
 
   public buildElement<P, S>(param: IElementOption<T, P, S>): IElement<T> {
     const { name, properties, children } = param;
-    const { element } = this.builder.buildElement<P, S>({ name, properties, children });
+    const { element } = this.builder.buildElement<P, S>({ children, name, properties });
 
     return { element };
   }
 
   public static setTagBuilder<K>(param: IBuilderSetTagBuilderIn<K>): void {
     const { tagBuilderClass } = param;
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    Builder.tagBuilderInstance = new Builder<K>({ BuilderClass: tagBuilderClass });
+    Builder.tagBuilderInstance = new Builder<K>({ BuilderConstructor: tagBuilderClass });
   }
 
   public static setFrameBuilder<K>(param: IBuilderSetFrameBuilderIn<K>): void {
     const { frameBuilderClass } = param;
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    Builder.frameBuilderInstance = new Builder<K>({ BuilderClass: frameBuilderClass });
+    Builder.frameBuilderInstance = new Builder<K>({ BuilderConstructor: frameBuilderClass });
   }
 
   public static getTagBuilder<K>(): IBuilderGetTagBuilderOut<K> {

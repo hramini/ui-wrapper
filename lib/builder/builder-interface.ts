@@ -27,8 +27,7 @@ export interface IFrameElementOption<T, P, S> extends IElementOption<T, P, S> {
 }
 
 export interface IBuilderEntry<T> {
-  /* eslint-disable */
-  BuilderClass: new () => IBuilder<T>;
+  BuilderConstructor: new () => IBuilder<T>;
 }
 
 export interface IBuilderSetTagBuilderIn<T> {

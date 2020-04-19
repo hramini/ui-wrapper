@@ -7,9 +7,8 @@ export class FrameBuilderDemo implements IFrameBuilder<TDemoElement> {
   public buildElement<P, S>(
     param: IFrameElementOption<TDemoElement, P, S>
   ): IElement<TDemoElement> {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    const { name: UnitClass } = param;
-    const unit: IUnit<TDemoElement, P, S> = new UnitClass();
+    const { name: UnitConstructor } = param;
+    const unit: IUnit<TDemoElement, P, S> = new UnitConstructor();
     const { element } = unit.provide();
 
     return { element };

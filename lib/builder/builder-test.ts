@@ -1,8 +1,8 @@
 import { TDemoElement } from '../type/element-type';
 import { CustomDemo } from '../unit/custom-demo-unit';
 import { Builder } from './builder-class';
-import { FrameBuilderDemo } from './builder-frame-demo-class';
-import { TagBuilderDemo } from './builder-tag-demo-class';
+import { FrameBuilderDemo } from './frame-builder-demo-class';
+import { TagBuilderDemo } from './tag-builder-demo-class';
 
 describe('@Builder', (): void => {
   describe('$#geTagBuilder', (): void => {
