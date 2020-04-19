@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class FrameBuilderDemo {
     buildElement(param) {
-        const { name: UnitClass } = param;
-        const unit = new UnitClass();
+        const { name: UnitConstructor } = param;
+        const unit = new UnitConstructor();
         const { element } = unit.provide();
         return { element };
     }

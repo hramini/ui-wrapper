@@ -20,7 +20,7 @@ export interface IFrameElementOption<T, P, S> extends IElementOption<T, P, S> {
     name: new () => IUnit<T, P, S>;
 }
 export interface IBuilderEntry<T> {
-    BuilderClass: new () => IBuilder<T>;
+    BuilderConstructor: new () => IBuilder<T>;
 }
 export interface IBuilderSetTagBuilderIn<T> {
     tagBuilderClass: new () => ITagBuilder<T>;
