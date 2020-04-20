@@ -12,6 +12,8 @@ export abstract class Unit<T, P, S> implements IUnit<T, P, S> {
   public props: Readonly<P> & Readonly<IBasicProperties<T>>;
   public state: Readonly<S>;
 
+  public abstract provide(): IElement<T>;
+
   public forceUpdate(): void {}
 
   public alterState<K extends keyof S>(param: IUnitAlterStateOptions<S, K>): void {
@@ -27,6 +29,4 @@ export abstract class Unit<T, P, S> implements IUnit<T, P, S> {
 
   public onAfterUpdate(): void {}
   public onBeforeDispose(): void {}
-
-  public abstract provide(): IElement<T>;
 }

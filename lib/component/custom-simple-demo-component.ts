@@ -1,11 +1,11 @@
 import { TDemoElement } from '../type/element-type';
+import { UnitDemo } from '../unit/unit-demo-class';
+import { IElement } from '../unit/unit-interface';
 import {
   ICustomDemoProperties,
   ICustomDemoSetProvideTextIn,
   ICustomDemoStates
 } from './custom-demo-interface';
-import { UnitDemo } from './unit-demo-class';
-import { IElement } from './unit-interface';
 
 export class CustomDemoSimple extends UnitDemo<ICustomDemoProperties, ICustomDemoStates> {
   private provideText: string;

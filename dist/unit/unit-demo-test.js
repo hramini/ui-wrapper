@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const custom_demo_unit_1 = require("./custom-demo-unit");
+const custom_demo_component_1 = require("../component/custom-demo-component");
 describe('@UnitDemo', () => {
     let customDemo;
     const onConstructorValue = 'on-constructor';
@@ -11,11 +11,11 @@ describe('@UnitDemo', () => {
     const onBeforeDisposeValue = 'on-before-dispose';
     const forceUpdateValue = 'force-update';
     beforeEach(() => {
-        customDemo = new custom_demo_unit_1.CustomDemo();
+        customDemo = new custom_demo_component_1.CustomDemo();
     });
     describe('#constructor', () => {
         test('expects to be an instance of @CustomDemo', () => {
-            expect(customDemo).toBeInstanceOf(custom_demo_unit_1.CustomDemo);
+            expect(customDemo).toBeInstanceOf(custom_demo_component_1.CustomDemo);
         });
     });
     describe('#provide', () => {

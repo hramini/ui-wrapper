@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const custom_simple_demo_unit_1 = require("./custom-simple-demo-unit");
+const custom_simple_demo_component_1 = require("../component/custom-simple-demo-component");
 describe('@UnitDemo / no override', () => {
     let customDemo;
     const elementValue = 'on-constructor';
     beforeEach(() => {
-        customDemo = new custom_simple_demo_unit_1.CustomDemoSimple();
+        customDemo = new custom_simple_demo_component_1.CustomDemoSimple();
     });
     describe('#provide', () => {
         test(`expects element to be ${elementValue}`, () => {

@@ -4,6 +4,7 @@ export declare abstract class UnitDemo<P, S> implements IUnit<TDemoElement, P, S
     state: Readonly<S>;
     props: Readonly<P>;
     private provided;
+    abstract provide(): IElement<TDemoElement>;
     onBeforeProvide(): void;
     onAfterProvide(): void;
     onBeforeUpdate(): IUnitOnBeforeUpdateCheck;
@@ -15,5 +16,4 @@ export declare abstract class UnitDemo<P, S> implements IUnit<TDemoElement, P, S
     onProvide(): void;
     onUpdate(): void;
     setProperties(param: IUnitSetPropertiesOptions<P>): void;
-    abstract provide(): IElement<TDemoElement>;
 }

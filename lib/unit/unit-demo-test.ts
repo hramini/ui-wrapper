@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 /* eslint-disable max-statements */
-import { CustomDemo } from './custom-demo-unit';
+import { CustomDemo } from '../component/custom-demo-component';
 
 describe('@UnitDemo', (): void => {
   let customDemo: CustomDemo;

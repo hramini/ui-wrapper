@@ -1,5 +1,5 @@
+import { ICustomDemoProperties } from '../../component/custom-demo-interface';
 import { TDemoElement } from '../../type/element-type';
-import { ICustomDemoProperties } from '../../unit/custom-demo-interface';
 import { TagBuilder } from './tag-builder-class';
 import { TagBuilderDemo } from './tag-builder-demo-class';
 

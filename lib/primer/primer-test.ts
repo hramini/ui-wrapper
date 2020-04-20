@@ -20,7 +20,7 @@ describe('@Primer', (): void => {
   describe('#setElement', (): void => {
     test(`expects element to be a string html with ${setElementId} as id`, (): void => {
       const { element: setElementDiv } = doc.makeElement({ tagName: ElementTag.DIV });
-      VirtualDocument.setId({ source: setElementDiv, identifier: setElementId });
+      VirtualDocument.setId({ identifier: setElementId, source: setElementDiv });
       primer.setElement({ element: setElementDiv.outerHTML });
 
       const {
@@ -50,12 +50,12 @@ describe('@Primer', (): void => {
     test(`expects an element with ${setTargetId} id, have been appended an element with ${setElementId} id in itself`, (): void => {
       const { element } = doc.makeElement({ tagName: ElementTag.DIV });
       VirtualDocument.setId({
-        source: element,
-        identifier: setElementId
+        identifier: setElementId,
+        source: element
       });
       VirtualDocument.setInnerHtml({
-        source: element,
-        innerHtml: 'inner-test'
+        innerHtml: 'inner-test',
+        source: element
       });
       const { outerHTML } = element;
       primer.setElement({

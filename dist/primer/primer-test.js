@@ -18,7 +18,7 @@ describe('@Primer', () => {
     describe('#setElement', () => {
         test(`expects element to be a string html with ${setElementId} as id`, () => {
             const { element: setElementDiv } = doc.makeElement({ tagName: virtual_document_1.ElementTag.DIV });
-            virtual_document_1.VirtualDocument.setId({ source: setElementDiv, identifier: setElementId });
+            virtual_document_1.VirtualDocument.setId({ identifier: setElementId, source: setElementDiv });
             primer.setElement({ element: setElementDiv.outerHTML });
             const { entryPrimer: { element } } = primer;
             expect(element).toBe(`<div id="${setElementId}"/>`);
@@ -36,12 +36,12 @@ describe('@Primer', () => {
         test(`expects an element with ${setTargetId} id, have been appended an element with ${setElementId} id in itself`, () => {
             const { element } = doc.makeElement({ tagName: virtual_document_1.ElementTag.DIV });
             virtual_document_1.VirtualDocument.setId({
-                source: element,
-                identifier: setElementId
+                identifier: setElementId,
+                source: element
             });
             virtual_document_1.VirtualDocument.setInnerHtml({
-                source: element,
-                innerHtml: 'inner-test'
+                innerHtml: 'inner-test',
+                source: element
             });
             const { outerHTML } = element;
             primer.setElement({

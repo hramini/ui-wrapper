@@ -14,6 +14,8 @@ export abstract class UnitDemo<P, S> implements IUnit<TDemoElement, P, S> {
   public props: Readonly<P>;
   private provided: TDemoElement;
 
+  public abstract provide(): IElement<TDemoElement>;
+
   public onBeforeProvide(): void {}
   public onAfterProvide(): void {}
   public onBeforeUpdate(): IUnitOnBeforeUpdateCheck {
@@ -56,6 +58,4 @@ export abstract class UnitDemo<P, S> implements IUnit<TDemoElement, P, S> {
     const { properties } = param;
     this.props = properties;
   }
-
-  public abstract provide(): IElement<TDemoElement>;
 }

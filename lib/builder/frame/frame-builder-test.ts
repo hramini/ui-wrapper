@@ -1,6 +1,6 @@
+import { CustomDemo } from '../../component/custom-demo-component';
+import { ICustomDemoProperties, ICustomDemoStates } from '../../component/custom-demo-interface';
 import { TDemoElement } from '../../type/element-type';
-import { ICustomDemoProperties, ICustomDemoStates } from '../../unit/custom-demo-interface';
-import { CustomDemo } from '../../unit/custom-demo-unit';
 import { FrameBuilder } from './frame-builder-class';
 import { FrameBuilderDemo } from './frame-builder-demo-class';
 

@@ -1,6 +1,6 @@
 {
   "name": "ui-wrapper",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "",
   "main": "./dist/ui-wrapper-expose",
   "types": "./dist/ui-wrapper-types.d.ts",
@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "test": "jest --watchAll --coverage",
+    "lint": "eslint --ext .ts --ext .tsx --fix --ignore-pattern '**/*.d.*' --ignore-pattern node_modules . && echo 'Linted Successfully!'",
     "tsc:compile": "rm -rf ./dist && tsc -p ./tsconfig.json --declarationMap false --sourceMap false --outDir dist",
     "tsc:test": "tsc -p ./tsconfig.json --noEmitOnError false --watch",
     "dts": "dts-bundle-generator -o dist/ui-wrapper-types.d.ts lib/ui-wrapper-expose.ts"

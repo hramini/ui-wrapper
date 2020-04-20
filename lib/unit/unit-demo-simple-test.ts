@@ -1,4 +1,4 @@
-import { CustomDemoSimple } from './custom-simple-demo-unit';
+import { CustomDemoSimple } from '../component/custom-simple-demo-component';
 
 describe('@UnitDemo / no override', (): void => {
   let customDemo: CustomDemoSimple;
