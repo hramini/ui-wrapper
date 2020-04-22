@@ -19,8 +19,8 @@ describe('@Primer', (): void => {
 
   describe('#setElement', (): void => {
     test(`expects element to be a string html with ${setElementId} as id`, (): void => {
-      const { element: setElementDiv } = doc.makeElement({ tagName: ElementTag.DIV });
-      VirtualDocument.setId({ identifier: setElementId, source: setElementDiv });
+      const { element: setElementDiv } = doc.createNewElement({ tagName: ElementTag.DIV });
+      VirtualDocument.setId({ element: setElementDiv, identifier: setElementId });
       primer.setElement({ element: setElementDiv.outerHTML });
 
       const {
@@ -33,7 +33,7 @@ describe('@Primer', (): void => {
 
   describe('#setTarget', (): void => {
     test(`expects target to be an element with ${setTargetId} as id`, (): void => {
-      const { element: setTargetElement } = doc.findElementById({ identifier: setTargetId });
+      const { element: setTargetElement } = doc.findElementById({ elementId: setTargetId });
       primer.setTarget({ target: setTargetElement });
       const {
         entryPrimer: {
@@ -48,27 +48,27 @@ describe('@Primer', (): void => {
 
   describe('#start', (): void => {
     test(`expects an element with ${setTargetId} id, have been appended an element with ${setElementId} id in itself`, (): void => {
-      const { element } = doc.makeElement({ tagName: ElementTag.DIV });
+      const { element } = doc.createNewElement({ tagName: ElementTag.DIV });
       VirtualDocument.setId({
-        identifier: setElementId,
-        source: element
+        element,
+        identifier: setElementId
       });
       VirtualDocument.setInnerHtml({
-        innerHtml: 'inner-test',
-        source: element
+        element,
+        innerHtml: 'inner-test'
       });
       const { outerHTML } = element;
       primer.setElement({
         element: outerHTML
       });
-      const { element: target } = doc.findElementById({ identifier: setTargetId });
+      const { element: target } = doc.findElementById({ elementId: setTargetId });
       primer.setTarget({
         target
       });
       primer.start();
 
       const { isFound: isChildElementFound, element: childElement } = doc.findElementById({
-        identifier: setElementId
+        elementId: setElementId
       });
       const {
         isFound: isParentElementFound,

@@ -17,8 +17,8 @@ describe('@Primer', () => {
     });
     describe('#setElement', () => {
         test(`expects element to be a string html with ${setElementId} as id`, () => {
-            const { element: setElementDiv } = doc.makeElement({ tagName: virtual_document_1.ElementTag.DIV });
-            virtual_document_1.VirtualDocument.setId({ identifier: setElementId, source: setElementDiv });
+            const { element: setElementDiv } = doc.createNewElement({ tagName: virtual_document_1.ElementTag.DIV });
+            virtual_document_1.VirtualDocument.setId({ element: setElementDiv, identifier: setElementId });
             primer.setElement({ element: setElementDiv.outerHTML });
             const { entryPrimer: { element } } = primer;
             expect(element).toBe(`<div id="${setElementId}"/>`);
@@ -26,7 +26,7 @@ describe('@Primer', () => {
     });
     describe('#setTarget', () => {
         test(`expects target to be an element with ${setTargetId} as id`, () => {
-            const { element: setTargetElement } = doc.findElementById({ identifier: setTargetId });
+            const { element: setTargetElement } = doc.findElementById({ elementId: setTargetId });
             primer.setTarget({ target: setTargetElement });
             const { entryPrimer: { target: { id: identifier } } } = primer;
             expect(identifier).toBe(setTargetId);
@@ -34,26 +34,26 @@ describe('@Primer', () => {
     });
     describe('#start', () => {
         test(`expects an element with ${setTargetId} id, have been appended an element with ${setElementId} id in itself`, () => {
-            const { element } = doc.makeElement({ tagName: virtual_document_1.ElementTag.DIV });
+            const { element } = doc.createNewElement({ tagName: virtual_document_1.ElementTag.DIV });
             virtual_document_1.VirtualDocument.setId({
-                identifier: setElementId,
-                source: element
+                element,
+                identifier: setElementId
             });
             virtual_document_1.VirtualDocument.setInnerHtml({
-                innerHtml: 'inner-test',
-                source: element
+                element,
+                innerHtml: 'inner-test'
             });
             const { outerHTML } = element;
             primer.setElement({
                 element: outerHTML
             });
-            const { element: target } = doc.findElementById({ identifier: setTargetId });
+            const { element: target } = doc.findElementById({ elementId: setTargetId });
             primer.setTarget({
                 target
             });
             primer.start();
             const { isFound: isChildElementFound, element: childElement } = doc.findElementById({
-                identifier: setElementId
+                elementId: setElementId
             });
             const { isFound: isParentElementFound, parentElement: { id: parentElementId } } = virtual_document_1.VirtualDocument.getParentElement({ element: childElement });
             const { id: childElementId } = childElement;
