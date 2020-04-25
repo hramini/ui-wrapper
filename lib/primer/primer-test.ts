@@ -13,8 +13,7 @@ describe('@Primer', (): void => {
     doc = new VirtualDocument();
     documentDemo = new VirtualDocumentDemo({ virtualDocument: doc });
     documentDemo.createBase();
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    primer = new Primer<TDemoElement>({ PrimerClass: PrimerDemo });
+    primer = new Primer<TDemoElement>({ PrimerConstructor: PrimerDemo });
   });
 
   describe('#setElement', (): void => {

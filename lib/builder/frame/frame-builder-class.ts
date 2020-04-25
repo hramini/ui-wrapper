@@ -7,7 +7,7 @@ import {
 } from './frame-builder-interface';
 
 export class FrameBuilder<T> implements IFrameBuilder<T> {
-  // HACK: these properties will never get any type as its generic type cause the setter methods are getting a required type
+  // HACK: these property will never get any type as its generic type, because the setter methods are getting a required type
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private static frameBuilderInstance: FrameBuilder<any>;
   private readonly frameBuilder: IFrameBuilder<T>;

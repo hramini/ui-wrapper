@@ -1,18 +1,21 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable class-methods-use-this */
+import { TDemoElement } from '../../type/element-type';
 import {
   IBasicProperties,
   IElement,
   IUnit,
   IUnitAlterStateOptions,
   IUnitOnBeforeUpdateCheck
-} from './unit-interface';
+} from '../unit-interface';
 
-export abstract class Unit<T, P, S> implements IUnit<T, P, S> {
-  public props: Readonly<P> & Readonly<IBasicProperties<T>>;
+export class UnitFramework<P, S> implements IUnit<TDemoElement, P, S> {
+  public props: Readonly<P> & Readonly<IBasicProperties<TDemoElement>>;
   public state: Readonly<S>;
 
-  public abstract provide(): IElement<T>;
+  public provide(): IElement<TDemoElement> {
+    return { element: '' };
+  }
 
   public forceUpdate(): void {}
 

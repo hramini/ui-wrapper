@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const custom_demo_component_1 = require("../../component/custom-demo-component");
+const unit_demo_class_1 = require("../../unit/unit-demo-class");
 const frame_builder_class_1 = require("./frame-builder-class");
 const frame_builder_demo_class_1 = require("./frame-builder-demo-class");
 describe('@FrameBuilder', () => {
@@ -18,7 +18,7 @@ describe('@FrameBuilder', () => {
         });
     });
     describe('#buildElement', () => {
-        const customDemoTagName = 'on-constructor';
+        const customDemoTagName = 'test-provide';
         beforeAll(() => {
             frame_builder_class_1.FrameBuilder.setFrameBuilder({
                 frameBuilderClass: frame_builder_demo_class_1.FrameBuilderDemo
@@ -27,7 +27,7 @@ describe('@FrameBuilder', () => {
         test(`expects element to be ${customDemoTagName}`, () => {
             const { frameBuilderInstance } = frame_builder_class_1.FrameBuilder.getFrameBuilder();
             const { element } = frameBuilderInstance.buildElement({
-                UnitConstructor: custom_demo_component_1.CustomDemo,
+                UnitConstructor: unit_demo_class_1.UnitDemo,
                 properties: {}
             });
             expect(element).toBe(customDemoTagName);

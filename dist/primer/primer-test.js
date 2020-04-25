@@ -13,7 +13,7 @@ describe('@Primer', () => {
         doc = new virtual_document_1.VirtualDocument();
         documentDemo = new virtual_document_1.VirtualDocumentDemo({ virtualDocument: doc });
         documentDemo.createBase();
-        primer = new primer_class_1.Primer({ PrimerClass: primer_demo_class_1.PrimerDemo });
+        primer = new primer_class_1.Primer({ PrimerConstructor: primer_demo_class_1.PrimerDemo });
     });
     describe('#setElement', () => {
         test(`expects element to be a string html with ${setElementId} as id`, () => {

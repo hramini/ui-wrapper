@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const unit_demo_class_1 = require("../unit/unit-demo-class");
-class CustomDemo extends unit_demo_class_1.UnitDemo {
+const unit_class_1 = require("../unit/unit-class");
+class CustomDemo extends unit_class_1.Unit {
     constructor() {
         super();
         this.setProvideText({

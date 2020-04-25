@@ -1,8 +1,8 @@
 import { TDemoElement } from '../type/element-type';
-import { UnitDemo } from '../unit/unit-demo-class';
+import { Unit } from '../unit/unit-class';
 import { IElement, IUnitOnBeforeUpdateCheck } from '../unit/unit-interface';
 import { ICustomDemoChangeShouldUpdateIn, ICustomDemoProperties, ICustomDemoStates } from './custom-demo-interface';
-export declare class CustomDemo extends UnitDemo<ICustomDemoProperties, ICustomDemoStates> {
+export declare class CustomDemo extends Unit<TDemoElement, ICustomDemoProperties, ICustomDemoStates> {
     private provideText;
     private shouldUpdate;
     constructor();

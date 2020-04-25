@@ -1,6 +1,6 @@
-import { CustomDemo } from '../../component/custom-demo-component';
 import { ICustomDemoProperties, ICustomDemoStates } from '../../component/custom-demo-interface';
 import { TDemoElement } from '../../type/element-type';
+import { UnitDemo } from '../../unit/unit-demo-class';
 import { FrameBuilder } from './frame-builder-class';
 import { FrameBuilderDemo } from './frame-builder-demo-class';
 
@@ -23,7 +23,7 @@ describe('@FrameBuilder', (): void => {
   });
 
   describe('#buildElement', (): void => {
-    const customDemoTagName: string = 'on-constructor';
+    const customDemoTagName: string = 'test-provide';
     beforeAll((): void => {
       FrameBuilder.setFrameBuilder<TDemoElement>({
         frameBuilderClass: FrameBuilderDemo
@@ -36,7 +36,7 @@ describe('@FrameBuilder', (): void => {
         ICustomDemoProperties,
         ICustomDemoStates
       >({
-        UnitConstructor: CustomDemo,
+        UnitConstructor: UnitDemo,
         properties: {}
       });
 

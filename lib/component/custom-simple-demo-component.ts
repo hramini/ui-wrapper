@@ -1,5 +1,5 @@
 import { TDemoElement } from '../type/element-type';
-import { UnitDemo } from '../unit/unit-demo-class';
+import { Unit } from '../unit/unit-class';
 import { IElement } from '../unit/unit-interface';
 import {
   ICustomDemoProperties,
@@ -7,7 +7,7 @@ import {
   ICustomDemoStates
 } from './custom-demo-interface';
 
-export class CustomDemoSimple extends UnitDemo<ICustomDemoProperties, ICustomDemoStates> {
+export class CustomDemoSimple extends Unit<TDemoElement, ICustomDemoProperties, ICustomDemoStates> {
   private provideText: string;
 
   public constructor() {

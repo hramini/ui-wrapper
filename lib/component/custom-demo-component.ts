@@ -1,5 +1,5 @@
 import { TDemoElement } from '../type/element-type';
-import { UnitDemo } from '../unit/unit-demo-class';
+import { Unit } from '../unit/unit-class';
 import { IElement, IUnitOnBeforeUpdateCheck } from '../unit/unit-interface';
 import {
   ICustomDemoChangeShouldUpdateIn,
@@ -8,7 +8,7 @@ import {
   ICustomDemoStates
 } from './custom-demo-interface';
 
-export class CustomDemo extends UnitDemo<ICustomDemoProperties, ICustomDemoStates> {
+export class CustomDemo extends Unit<TDemoElement, ICustomDemoProperties, ICustomDemoStates> {
   private provideText: string;
   private shouldUpdate: boolean;
 

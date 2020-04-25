@@ -1,12 +1,15 @@
+import { Unit } from '../unit/unit-class';
 import { IPrimer, IPrimerElement, IPrimerEntry, IPrimerTarget } from './primer-interface';
 
 export class Primer<T> {
   public readonly entryPrimer: IPrimer<T>;
 
   public constructor(entry: IPrimerEntry<T>) {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    const { PrimerClass } = entry;
-    this.entryPrimer = new PrimerClass();
+    const { PrimerConstructor } = entry;
+    this.entryPrimer = new PrimerConstructor();
+
+    const { unitPrototype } = this.entryPrimer.getUnitPrototype();
+    Object.setPrototypeOf(Unit.prototype, unitPrototype);
   }
 
   public setElement(param: IPrimerElement<T>): void {

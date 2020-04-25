@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class Unit {
+class UnitFramework {
+    provide() {
+        return { element: '' };
+    }
     forceUpdate() { }
     alterState(param) {
         var _a;
@@ -16,4 +19,4 @@ class Unit {
     onAfterUpdate() { }
     onBeforeDispose() { }
 }
-exports.Unit = Unit;
+exports.UnitFramework = UnitFramework;
