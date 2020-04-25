@@ -1,6 +1,6 @@
 {
   "name": "ui-wrapper",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "description": "",
   "main": "./dist/ui-wrapper-expose",
   "types": "./dist/ui-wrapper-types.d.ts",
