@@ -8,8 +8,7 @@ export class Primer<T> {
     const { PrimerConstructor } = entry;
     this.entryPrimer = new PrimerConstructor();
 
-    const { unitPrototype } = this.entryPrimer.getUnitPrototype();
-    Object.setPrototypeOf(Unit.prototype, unitPrototype);
+    this.setUnitPrototypes();
   }
 
   public setElement(param: IPrimerElement<T>): void {
@@ -28,5 +27,10 @@ export class Primer<T> {
 
   public start(): void {
     this.entryPrimer.start();
+  }
+
+  private setUnitPrototypes(): void {
+    const { unitPrototype } = this.entryPrimer.getUnitPrototype();
+    Object.setPrototypeOf(Unit.prototype, unitPrototype);
   }
 }
