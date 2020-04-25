@@ -5,4 +5,5 @@ export declare class Primer<T> {
     setElement(param: IPrimerElement<T>): void;
     setTarget(param: IPrimerTarget): void;
     start(): void;
+    private setUnitPrototypes;
 }

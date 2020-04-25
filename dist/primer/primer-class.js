@@ -5,8 +5,7 @@ class Primer {
     constructor(entry) {
         const { PrimerConstructor } = entry;
         this.entryPrimer = new PrimerConstructor();
-        const { unitPrototype } = this.entryPrimer.getUnitPrototype();
-        Object.setPrototypeOf(unit_class_1.Unit.prototype, unitPrototype);
+        this.setUnitPrototypes();
     }
     setElement(param) {
         const { element } = param;
@@ -22,6 +21,10 @@ class Primer {
     }
     start() {
         this.entryPrimer.start();
+    }
+    setUnitPrototypes() {
+        const { unitPrototype } = this.entryPrimer.getUnitPrototype();
+        Object.setPrototypeOf(unit_class_1.Unit.prototype, unitPrototype);
     }
 }
 exports.Primer = Primer;

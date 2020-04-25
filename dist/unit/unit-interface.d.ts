@@ -1,5 +1,4 @@
 export interface IUnitLifeCycle {
-    onBeforeProvide(): void;
     onAfterProvide(): void;
     onBeforeUpdate(): IUnitOnBeforeUpdateCheck;
     onAfterUpdate(): void;

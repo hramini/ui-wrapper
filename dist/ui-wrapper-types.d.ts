@@ -5,7 +5,6 @@ export interface IElementOption<T, P> {
 	children?: (string | T)[];
 }
 export interface IUnitLifeCycle {
-	onBeforeProvide(): void;
 	onAfterProvide(): void;
 	onBeforeUpdate(): IUnitOnBeforeUpdateCheck;
 	onAfterUpdate(): void;
@@ -108,6 +107,7 @@ export declare class Primer<T> {
 	setElement(param: IPrimerElement<T>): void;
 	setTarget(param: IPrimerTarget): void;
 	start(): void;
+	private setUnitPrototypes;
 }
 export declare abstract class Unit<T, P, S> implements IUnit<T, P, S> {
 	props: Readonly<P> & Readonly<IBasicProperties<T>>;
